@@ -1,0 +1,15 @@
+from itertools import permutations
+from sys import maxsize
+
+def tsp(graph, s):
+    V = len(graph)
+    vertices = [i for i in range(V) if i != s]
+    return min(sum(graph[k][j] for k, j in zip([s]+list(p), list(p)+[s])) for p in permutations(vertices))
+
+graph = [
+    [0, 10, 15, 20],
+    [10, 0, 35, 25],
+    [15, 35, 0, 30],
+    [20, 25, 30, 0]
+]
+print(tsp(graph, 0))
